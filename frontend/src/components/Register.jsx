@@ -56,9 +56,9 @@ const Register = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button className="btn btn-primary w-100" onClick={handleRegister}>Register</button>
+                <button className="btn btn-danger w-100" onClick={handleRegister}>Register</button>
                 <div className="text-center mt-3">
-                    <h7>Have Account?</h7><h7><Link to="/">Login Here</Link></h7>
+                    <h7>Have Account?</h7><h7><Link to="/login" style={{ color: "red", fontWeight: "bold" }}>Login Here</Link></h7>
                 </div>
             </div>
         </div>

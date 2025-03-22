@@ -31,25 +31,30 @@ const Login = () => {
                 <h3 className="text-center mb-4">Login</h3>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        placeholder="Enter username" 
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter username"
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        className="form-control" 
-                        placeholder="Enter password" 
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button className="btn btn-primary w-100" onClick={handleLogin}>Login</button>
+                <button className="btn btn-danger w-100" onClick={handleLogin}>
+                    Login
+                </button>
+
                 <div className="text-center mt-3">
-                    <h7>Don't have Account?</h7><h7><Link to="/register">Register Here</Link></h7>
+                    <h7>Don't have Account?</h7><h7><Link to="/register" style={{ color: "red", fontWeight: "bold" }}>
+                        Register Here
+                    </Link></h7>
                 </div>
             </div>
         </div>
