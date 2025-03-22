@@ -9,8 +9,10 @@ public class Booking {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
     @ManyToOne
+    @JoinColumn(name = "show_id",nullable = false)
     private Show show;
     private int seatsBooked;
     private double totalPrice;

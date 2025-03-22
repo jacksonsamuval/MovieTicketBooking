@@ -5,17 +5,29 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "movie_show")
 public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id",nullable = false)
     private Movie movie;
     @ManyToOne
+    @JoinColumn(name = "theater_id",nullable = false)
     private Theater theater;
     private LocalDateTime dateTime;
     private int availaibleSeats;
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;
