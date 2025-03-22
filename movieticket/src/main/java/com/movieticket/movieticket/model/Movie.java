@@ -1,9 +1,6 @@
 package com.movieticket.movieticket.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Movie {
@@ -17,6 +14,25 @@ public class Movie {
     private int duration;
     private String language;
     private int price;
+    @Lob
+    private byte[] image;
+    private String imageType;
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public int getPrice() {
         return price;

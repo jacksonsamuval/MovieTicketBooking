@@ -26,12 +26,19 @@ public class HomeService {
     @Autowired
     private AuthenticationManager authenticationManager;
     public ResponseEntity<?> save(User user) {
-        User user1 = new User();
-        String pass = encoder.encode(user.getPassword());
-        user1.setUsername(user.getUsername());
-        user1.setPassword(pass);
-        userRepo.save(user1);
-        return ResponseEntity.status(200).body(user1);
+        User user2 = userRepo.findByUsername(user.getUsername());
+        if (user2==null)
+        {
+            User user1 = new User();
+            String pass = encoder.encode(user.getPassword());
+            user1.setUsername(user.getUsername());
+            user1.setPassword(pass);
+            userRepo.save(user1);
+            return ResponseEntity.status(200).body(user1);
+        } else {
+            return ResponseEntity.status(402).body("Username Exists");
+        }
+
     }
 
     public ResponseEntity<?> loginUser(UloginDto ulogin) {
