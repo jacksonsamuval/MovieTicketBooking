@@ -1,6 +1,7 @@
 package com.movieticket.movieticket.service;
 
 import com.movieticket.movieticket.dto.UloginDto;
+import com.movieticket.movieticket.jwt.JwtService;
 import com.movieticket.movieticket.model.User;
 import com.movieticket.movieticket.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 public class HomeService {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private JwtService jwtService;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -33,7 +36,7 @@ public class HomeService {
         try{
             Authentication authentication = authenticationManager.authenticate
                     (new UsernamePasswordAuthenticationToken(ulogin.getUsername(),ulogin.getPassword()));
-            return ResponseEntity.status(200).body("Success");
+            return ResponseEntity.status(200).body(jwtService.generateToken(ulogin.getUsername()));
         }  catch (BadCredentialsException e) {
             return ResponseEntity.status(401).body("Invalid username or password");
         }  catch (AuthenticationException e) {

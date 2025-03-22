@@ -1,5 +1,6 @@
 package com.movieticket.movieticket.config;
 
+import com.movieticket.movieticket.jwt.JwtFilter;
 import com.movieticket.movieticket.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -24,6 +26,9 @@ import java.util.List;
 public class SecurityConfig {
 
     @Autowired
+    private JwtFilter jwtFilter;
+
+    @Autowired
     private MyUserDetailsService userDetailsService;
 
     @Bean
@@ -33,7 +38,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(requests-> requests.requestMatchers("/api/login","/api/register")
                         .permitAll().anyRequest().authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilter(corsFilter());
+                .addFilter(corsFilter())
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

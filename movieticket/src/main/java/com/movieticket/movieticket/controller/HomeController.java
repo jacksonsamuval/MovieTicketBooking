@@ -5,10 +5,7 @@ import com.movieticket.movieticket.model.User;
 import com.movieticket.movieticket.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -32,5 +29,10 @@ public class HomeController {
         } catch (Exception e) {
             return ResponseEntity.status(400).body("error");
         }
+    }
+
+    @GetMapping("/greet")
+    public String Greet(){
+        return "Good Morning!";
     }
 }
