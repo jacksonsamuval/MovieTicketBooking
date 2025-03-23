@@ -16,6 +16,16 @@ public class Booking {
     private Show show;
     private int seatsBooked;
     private double totalPrice;
+    @Enumerated(value = EnumType.STRING)
+    private BookingStatus bookingStatus;
+
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
 
     public Integer getId() {
         return id;

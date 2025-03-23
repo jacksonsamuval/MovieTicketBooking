@@ -2,6 +2,7 @@ package com.movieticket.movieticket.service;
 
 import com.movieticket.movieticket.dto.BookingDto;
 import com.movieticket.movieticket.model.Booking;
+import com.movieticket.movieticket.model.BookingStatus;
 import com.movieticket.movieticket.model.Show;
 import com.movieticket.movieticket.model.User;
 import com.movieticket.movieticket.repo.BookingRepo;
@@ -33,6 +34,7 @@ public class BookingService {
         int seats = show.getAvailaibleSeats();
         int afterBooking = seats-bookingDto.getSeatsBooked();
         show.setAvailaibleSeats(afterBooking);
+        booking.setBookingStatus(BookingStatus.COMPLETED);
         bookingRepo.save(booking);
         showRepo.save(show);
         return ResponseEntity.status(200).body(booking);
